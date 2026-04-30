@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jv - Meu Portfólio</title>
+<!-- Adição do serviço que vai conter as fontes que preciso
+DM serif Display, DM Mono e Outfit 
+-->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <!--Classe com apetas um elemento dentro -->
+        <div class="wrapper">
+            <div class="header-top">
+                <!--Parte da esquerda(nome e bio)-->
+                <div class="header-identity">
+                
+                    <!--Habilitar o open to work
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        Disponível para oportunidades
+                    </div>-->
+                
+                    <h1 class="hero-name">
+                        João<br>
+                        <em>Victor Queiroz</em>
+                    </h1>
+                    
+                    <p class="hero-role">Analista de TI | Full Stack Developer</p>
+
+                    <p class="hero-bio">
+                        Desenvolvedor e analista de sistemas, estudando segurança da informação com foco em desenvolvimento mais seguro<br>
+                        para aplicações WEB e Softwares.
+                    </p>
+                </div>
+
+
+                <!--Parte da direita(contatos)-->
+                <div class="header-meta">
+                    <div class="meta-item">
+                        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 8.5a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.4"/><path d="M13 8c0 4-5 7-5 7S3 12 3 8a5 5 0 0110 0z" stroke="currentColor" stroke-width="1.4"/></svg>
+                        São Paulo, SP — 08050-130
+                    </div>
+                    <div class="meta-item">
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M2 4l6 5 6-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/></svg>
+                        Queirozjoaovictor16@gmail.com
+                    </div>
+                    <div class="meta-item">
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1C4.13 1 1 4.13 1 8c0 3.09 2 5.71 4.79 6.64.35.06.48-.15.48-.34v-1.19c-1.95.42-2.36-.94-2.36-.94-.32-.81-.78-1.03-.78-1.03-.64-.44.05-.43.05-.43.7.05 1.07.72 1.07.72.63 1.07 1.64.76 2.04.58.06-.45.24-.76.44-.94-1.56-.18-3.2-.78-3.2-3.47 0-.77.27-1.39.72-1.88-.07-.18-.31-.89.07-1.86 0 0 .59-.19 1.92.72a6.67 6.67 0 013.5 0c1.33-.91 1.92-.72 1.92-.72.38.97.14 1.68.07 1.86.45.49.72 1.11.72 1.88 0 2.7-1.64 3.29-3.2 3.47.25.22.48.65.48 1.31v1.94c0 .19.12.41.48.34A7.002 7.002 0 0015 8c0-3.87-3.13-7-7-7z" fill="currentColor"/></svg>
+                        github.com/0o-J0ta
+                    </div>
+                </div>
+            </div>
+
+            <!--Botões guias do menu-->
+            <!-- O href define o destino. Quando começa com #, significa que vai para um elemento com aquele id na mesma página -->
+            <div class="header-actions">
+                <a href="#contato" class="btn btn-accent">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 5 6-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                    Entrar em contato
+                </a>
+                <a href="#projetos" class="btn btn-ghost">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="2" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="9" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="9" width="5" height="5" rx="1.2" stroke="currentColor" stroke-width="1.4"/></svg>
+                    Ver projetos
+                </a>
+                <button onclick="window.print()" class="btn btn-ghost">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6V2h8v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M4 11H2V6h12v5h-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="9" width="8" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/></svg>
+                    Imprimir / PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <div class="wrapper">
+            <div class="tabs-inner">
+            <!--class="tab-link active" — Este link tem duas classes. A classe active será usada pelo 
+            CSS para destacar a aba atual e pelo JavaScript para controlar qual aba está selecionada.
+            <nav> — Tag semântica para menus de navegação.-->
+                <a class="tab-link active" href="#sobre">
+                    <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="6" r="3" stroke="currentColor" stroke-width="1.4"/><path d="M2 14c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    Sobre
+                </a>
+                <a class="tab-link" href="#experiencia">
+                    <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 5V4a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    Experiência
+                </a>
+                <a class="tab-link" href="#projetos">
+                    <svg viewBox="0 0 16 16" fill="none"><path d="M2 3h5l2 2h5v9H2V3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                    Projetos
+                </a>
+                <a class="tab-link" href="#skills">
+                    <svg viewBox="0 0 16 16" fill="none"><path d="M3 13l3-4 3 2 4-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Skills
+                </a>
+                <a class="tab-link" href="#formacao">
+                    <svg viewBox="0 0 16 16" fill="none"><path d="M8 2l6 3.5L8 9 2 5.5 8 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 7.5V12c1 1 5 1 6 0V7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Educação
+                </a>
+                <a class="tab-link" href="#contato">
+                    <svg viewBox="0 0 16 16" fill="none"><path d="M2 4l6 5 6-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/></svg>
+                    Contato
+                </a>
+            </div>
+        </div>
+    </nav>
+
+<!--SOBRE MIM da pag(colocar o espaçamento entre as linhas)-->
+
+    <section id="sobre" class="visible">
+        <div class="wrapper">
+            <p class="section-label">// 01 - Sobre</p>
+            <h2 class="section-title">Quem é João Queiroz?</h2>
+
+            <div class="sobre-grid">
+                <div class="sobre-main">
+                        <p>Sou um profissional de TI com 2 anos de experiência sólida em Suporte de TI e Desenvolvimento.</p>
+
+                        <p>Formado em GTI e atualmente me aprimorando em Segurança da Informação, com foco em desenvolvimento seguro e cybersecurity.
+                            Atuo há 2 anos como Analista de Suporte, onde presto suporte técnico e funcional em módulos ERP,
+                            gerencio incidentes e busco uma resolução rápida e eficiente dos chamados.</p>
+
+                        <p>Tenho vivência prática com emissão e parametrização de documentos fiscais (NF-e, CT-e, NFS-e, CFOP, SEFAZ), fluxo financeiro
+                            e monitoramento de servidores. Desenvolvo automações em Python para otimização de processos operacionais
+                            e aplico boas práticas de segurança da informação no dia a dia. Possuo conhecimento e eficiência também em hardware, redes,
+                            como parametrização de endereçamento IP, e nos mais diversos segmentos para implantação de redes. Também ministrei aulas técnicas de diagnóstico,
+                            manutenção e introdução à programação embarcada com Arduino/C++.</p>
+                </div>
+            
+            <!--Cards de informações add-->
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                <div class="sobre-card">
+                    <h3>Localização</h3>
+                    <p>São Paulo, SP<br>Disponível para cargos remotos e precenciais em SP</p>
+                </div>
+
+                <div class="sobre-card">
+                    <h3>Idiomas</h3>
+                    <p>Português (Brasil) - Nativo<br>Inglês - Intermediário/Tecnico(Wizard by Pearson)</p>
+                </div>
+                
+                <div class="sobre-card">
+                    <h3>Interesses</h3>
+                    <p>Open Source | Desenvolvimento Full Stack | Cybersecurity | ERP
+                    </p>
+                </div>
+                </div>
+            </div>
+
+        </div>
+        <!--<section id="sobre"> — Tag semântica para seções temáticas da página. O atributo id="sobre" é o "endereço" único desta seção. 
+            É exatamente este id que o link <a href="#sobre"> usa para navegar até aqui. 
+            Regra de ouro: cada id deve ser único na página inteira. -->
+    </section>
+
+    <section id="experiencia">
+        <div class="wrapper">
+            <p class="section-label">// 02 - Experiências</p>
+            <h2 class="section-title">Trajetória profissional</h2>
+
+            <div class="exp-list">
+
+            <!--Info sobre minhas experiências-->
+                <div class="exp-item">
+
+                    <div class="exp-logo">MI</div>
+
+                    <div class="exp-content">
+                        <div class="exp-top">
+                            <span class="exp-cargo">Instrutor de Hardware</span>
+                            <span class="exp-periodo">01/2023 - 04/2023</span>
+                        </div>
+                        <div class="exp-company">Millennium Tecnologia - Poá, SP</div>
+                        <p class="exp=desc"> - Ensino técnico de manutenção, diagnóstico e troubleshooting de hardware.<br>- Planejamento de aulas práticas e teóricas.<br>- Introdução à programação em C++ com Arduino para projetos embarcados.</p>
+
+                        <div class="exp-tags">
+                            <span class="tag">People management</span>
+                             <span class="tag">Hardware</span>
+                            <span class="tag">Manutenção de Computadores</span>
+                            <span class="tag">Diagnóstico Técnico</span>
+                            <span class="tag">Troubleshooting</span>
+                            <span class="tag">Didática</span>
+                            <span class="tag">Planejamento de Aulas</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">C++</span>
+                            <span class="tag">Sistemas Embarcados</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="exp-item">
+                    <div class="exp-logo">INCO</div>
+
+                    <div class="exp-content">
+                        <div class="exp-top">
+                            <span class="exp-cargo">Analista de Suporte Computacional</span>
+                            <span class="exp-periodo">06/2023 - Atual</span>
+                        </div>
+                        <div class="exp-company">Incosystem Soluções em ERP - Arujá, SP</div>
+                        <p class="exp=desc"> - Atendimento técnico via telefone, e-mail e acesso remoto (AnyDesk,TeamViewer, RustDesk).<br>
+                                            - Suporte funcional e técnico em módulos ERP: financeiro, fiscal, CRM, logística e estoque.<br>
+                                            - Monitoramento e análise de emissão de documentos fiscais (NF-e, CT-e, NFSe).<br>
+                                            - Parametrização fiscal (CFOP, impostos) e validações junto à SEFAZ.<br>
+                                            - Análise de fluxo financeiro: contas a pagar/receber e geração de arquivos CNAB.<br>
+                                            - Criação e otimização de queries SQL para análise de dados.<br>
+                                            - Manutenção e ajustes em banco de dados MySQL.<br>
+                                            - Monitoramento de serviços e servidores para testes, simulações e troubleshooting.<br>
+                                            - Apoio em implantação de sistemas e onboarding de clientes.</p>
+
+                        <div class="exp-tags">
+                            <span class="tag">Hardware</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Technical Support</span>
+                            <span class="tag">Linux/Windows Server</span>
+                            <span class="tag">Help Desk</span>
+                            <span class="tag">N1 N2 Support</span>
+                            <span class="tag">ERP Systems</span>
+                            <span class="tag">CRM Systems</span>
+                            <span class="tag">Remote Support</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Database Management</span>
+                            <span class="tag">Data Analysis</span>
+                            <span class="tag">NF-e | CT-e | NFS-e</span>
+                            <span class="tag">XML</span>
+                            <span class="tag">Accounts Receivable</span>
+                            <span class="tag">System Monitoring</span>
+                            <span class="tag">Server Monitoring</span>
+                            <span class="tag">Troubleshooting</span>
+                            <span class="tag">System Implementation</span>
+                            <span class="tag">Customer Onboarding</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+<!--Projetos e skills-->
+    <section id="projetos">
+        <div class="wrapper">
+            <p class="section-label">// 03 - Meus projetos</p>
+            <h2 class="section-title">O que construí</h2>
+
+            <div class="proj-grid">
+
+                <div class="proj-card">
+                    <!--ICONE-->
+
+                    <div class="proj-icon" style="background: rgba(146, 193, 224, 0.267);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5a9afa" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="5" rx="9" ry="4"/><path d="M3 5v4c0 2.213333333333333 4.03 4 9 4s9-1.7866666666666666 9-4V5"/><path d="M3 9v4c0 2.213333333333333 4.03 4 9 4s9-1.7866666666666666 9-4V9"/><path d="M3 13v4c0 2.213333333333333 4.03 4 9 4s9-1.7866666666666666 9-4v-4"/>
+                        </svg>
+                    </div>
+                    
+                    
+                    <h3 class="proj-title">CRUD with Python</h3>
+                    <p class="proj-desc">Sistema de manipulação e criação de produtos utilizando apenas a linguagem Python</p>
+                    <div class="proj-tags">
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <!--Se for para adicioaar outros projetos futuramente continue nesta identação-->
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <div class="wrapper">
+            <p class="section-label">// 04 - Skills</p>
+            <h2 class="section-title">Ferramentas & Tecnologias</h2>
+            <div class="skills-section">
+                <div class="skill-group">
+                    <h3>Frontend</h3>
+                        <div class="skill-item">
+                            <span class="skill-name-col">JavaScript</span>
+                            <div class="skill-bar-wrap">
+                                <div class="skill-fill" data-w="60" style="background: var(--accent); width: 60%;"></div> <!--Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele-->
+                            </div>
+                            <span class="skill-pct-col">60%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name-col">React</span>
+                            <div class="skill-bar-wrap">
+                                <div class="skill-fill" data-w="50" style="background: var(--accent); width: 50%;"></div> <!--Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele-->
+                            </div>
+                            <span class="skill-pct-col">50%</span>
+                        <!--Conceito novo importantíssimo:
+                        data-w="95" — Isso é um atributo de dados personalizado (custom data attribute). 
+                        O prefixo data- seguido de qualquer nome cria um lugar para guardar informação no HTML. O JavaScript vai ler esse valor depois para saber até quanto a barra deve crescer-->
+                        </div>
+                        <!--Se for para adicioaar outras skills futuramente continue nesta identação-->
+
+                </div>
+                <div class="skill-group">
+                    <h3>Backend</h3>
+                        <div class="skill-item">
+                            <span class="skill-name-col">Python</span>
+                            <div class="skill-bar-wrap">
+                                <div class="skill-fill" data-w="70" style="background: var(--accent2); width: 70%;"></div> Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele
+                            </div>
+                            <span class="skill-pct-col">70%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name-col">SQL</span>
+                            <div class="skill-bar-wrap">
+                                <div class="skill-fill" data-w="50" style="background: var(--accent2); width: 50%;"></div> Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele
+                            </div>
+                            <span class="skill-pct-col">50%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name-col">C++</span>
+                            <div class="skill-bar-wrap">
+                                <div class="skill-fill" data-w="50" style="background: var(--accent2); width: 50%;"></div> Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele
+                            </div>
+                            <span class="skill-pct-col">50%</span>
+                        </div>
+                </div>
+            </div>
+            <div class="skill-group">
+                <h3>Devops</h3>
+                    <div class="skill-item">
+                        <span class="skill-name-col">Linux</span>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-fill" data-w="60" style="background: var(--accent3); width: 60%;"></div> Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele
+                        </div>
+                        <span class="skill-pct-col">60%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name-col">AWS</span>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-fill" data-w="40" style="background: var(--accent3); width: 40%;"></div> Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele
+                        </div>
+                        <span class="skill-pct-col">40%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name-col">Infraestrutura e redes</span>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-fill" data-w="60" style="background: var(--accent3); width: 60%;"></div> Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele
+                        </div>
+                        <span class="skill-pct-col">60%</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name-col">Cybersecurity</span>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-fill" data-w="70" style="background: var(--accent3); width: 70%;"></div> Depois tenho que revisar uma forma de colocar essa opção de cor valida dentro dele
+                        </div>
+                        <span class="skill-pct-col">70%</span>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <section id="formacao">
+        <div class="wrapper">
+            <p class="section-label">// 05 - Educação</p>
+            <h2 class="section-title">Formação acadêmica</h2>
+
+            <div class="edu-list">
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Tecnólogo em Gestão em Tecnologia da Informação</div>
+                        <div class="edu-school">Universidade Cruzeiro do Sul</div>
+                        <div class="edu-detail">2022 - 2023</div>
+                    </div>
+                    <span class="edu-badge edu-badge-concluida">Concluída</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Segurança da Informação</div>
+                        <div class="edu-school">Universidade Cruzeiro do Sul (EAD)</div>
+                        <div class="edu-detail">2025 - 2026</div>
+                    </div>
+                    <span class="edu-badge edu-badge-cursando">Cursando</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Informática Avançada</div>
+                        <div class="edu-school">Microcamp</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Especialista em redes e TI</div>
+                        <div class="edu-school">Millennium Tecnologia</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Especialista em redes e TI</div>
+                        <div class="edu-school">Millennium Tecnologia</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Fundamentos AWS</div>
+                        <div class="edu-school">Escola da Nuvem</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Linux</div>
+                        <div class="edu-school">Curso em vídeo/FIAP</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Python</div>
+                        <div class="edu-school">Curso em vídeo/FIAP</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">Cybersecurity</div>
+                        <div class="edu-school">FIAP</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+                <div class="edu-item">
+                    <div>
+                        <div class="edu-degree">LGPD</div>
+                        <div class="edu-school">Santander</div>
+                    </div>
+                    <span class="edu-badge edu-badge-certificado">Certificado</span>
+                </div>
+            </div> 
+        </div>
+    </section>
+    <section id="contato">
+        <div class="wrapper">
+            <p class="section-label">//06 - contato</p>
+            <h2 class="section-title">Vamos conversar</h2>
+
+            <div class="contato-grid">
+                <a class="contato-card" href="queirozjoaovictor16@gmail.com">
+                    <div class="contato-icon">
+                        <svg viewBox="0 0 18 18" fill="none">
+                            <path d="M2 4l7 6 7-6" stroke="#c8f05a" stroke-width="1.4" stroke-linecap="round"></path>
+                            <rect x="1" y="3" width="16" height="12" rx="2" stroke="#c8f05a" stroke-width="1.4"></rect>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="contato-label">E-mail</div>
+                        <div class="contato-value">Queirozjoaovictor16@gmail.com</div>
+                    </div>
+                </a>
+
+                <a class="contato-card" href="https://www.linkedin.com/in/jo%C3%A3o-queiroz/">
+                    <div class="contato-icon">
+                        <svg viewBox="0 0 18 18" fill="none">
+                            <rect x="1" y="1" width="16" height="16" rx="3" stroke="#5afaaf" stroke-width="1.4"></rect>
+                            <path d="M5 7v6M5 5v.5" stroke="#5afaaf" stroke-width="1.6" stroke-linecap="round"></path>
+                            <path d="M8 13V9.5a2.5 2.5 0 015 0V13" stroke="#5afaaf" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="contato-label">LinkedIn</div>
+                        <div class="contato-value">linkedin.com/in/joão-queiroz</div>
+                    </div>
+                </a>
+            </div>
+            <!--Possibilidade de colocar o formulario para envio de mensagem aqui em seguida-->
+            <div class="form-section">
+                <h3>Envie uma mensagem</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <!--<label for="f-nome"> — Etiqueta de um campo de formulário. 
+                            O atributo for deve ter o mesmo valor que o id do input correspondente. Isso conecta os dois: clicar no label já coloca o cursor no input.-->
+                        <label for="f-nome">Nome</label>
+                        <input type="text" id="f-nome" placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="f-email">E-mail:</label>
+                        <input type="email" id="f-email" placeholder="seu@email.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="f-assunto">Assunto:</label>
+                    <select id="f-assunto">
+                        <option value="">Selecione o tipo de contato</option>
+                        <option>Proposta CLT</option>
+                        <option>Proposta de Estágio</option>
+                        <option>Proposta de Freelance</option>
+                        <option>Outras</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="f-msg">Mensagem:</label>
+                    <textarea name="msg" id="f-msg" placeholder="Escreva uma mensagem...">
+                    </textarea>
+                    <!--<textarea> — Campo de texto de múltiplas linhas. 
+                        placeholder — Texto cinza que aparece dentro do campo quando está vazio, para dar dica ao usuário. -->
+                </div>
+
+                <div class="form-submit-row">
+                    <button class="btn btn-accent" onclick="enviarform()">
+                        Enviar mensagem
+                    </button>
+                </div>
+                <div class="toast-msg" id="toast-form">
+                   <!-- ✅ Mensagem enviada com sucesso!-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="wrapper" style="width:100%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <p>© 2026 0o-Jota — Feito 100% em HTML, CSS & JavaScript</p>
+        <p>"A fé na vitória tem que ser inabalável!"</p>
+    </footer>
+    <div id="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="show">
+        <svg viewBox="0 0 16 16" fill="none">
+            <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </div>
+
+    <script src='script.js'></script>
+
+</body>
+</html>
