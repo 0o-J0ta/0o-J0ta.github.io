@@ -47,7 +47,6 @@ function updateTab(){
 
 
 function enviarform(){
-
   
   //Fica licado pae muito bom isso aqui, o .trim() no final vai remover os espaços em branco nas pontas
   const nome = document.getElementById('f-nome').value.trim();
@@ -61,22 +60,55 @@ function enviarform(){
     return;
   }
 
+  //Config do EmailJS para envio do e-mail para minha caixa
+  
+  emailjs.init({
+            publicKey: "_vvRF-RVIcJiuaJxA",
+  });
+
+  document.getElementById("form-cont").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const formData = {
+      name: document.getElementById("f-nome").value,
+      email: document.getElementById("f-email").value,
+      subject: document.getElementById("f-assunto").value,
+      message: document.getElementById("f-msg").value
+    }
+      
+    let serviceID = "service_yh4ipvt"
+    let templateID = "template_1vordye"
+
+    emailjs.send(serviceID, templateID, formData);
+
+    console.table(formData)
+  })
+
   const notifica = document.getElementById('toast-form');
 
   //torna visível quando enviar o e-mail
   notifica.style.display = 'block';
 
   // Limpa os campos após enviar
-  document.getElementById('f-nome').value = '';
-  document.getElementById('f-email').value = '';
-  document.getElementById('f-assunto').value = '';
-  document.getElementById('f-msg').value = '';
+  //document.getElementById('f-nome').value = '';
+  //document.getElementById('f-email').value = '';
+  //document.getElementById('f-assunto').value = '';
+  //document.getElementById('f-msg').value = '';
 
   // setTimeout executa uma função após um atraso.
   // Parâmetros: (função, milissegundos)
   // 5000ms = 5 segundos
   setTimeout(() => {
     notifica.style.display = 'none'; // esconde o notifica
+    // Limpa os campos após enviar
+    document.getElementById('f-nome').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-assunto').value = '';
+    document.getElementById('f-msg').value = '';
   }, 5000);
 }
+
+
+
+
 
