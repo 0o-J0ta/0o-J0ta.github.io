@@ -7,9 +7,11 @@
 <!-- Adição do serviço que vai conter as fontes que preciso
 DM serif Display, DM Mono e Outfit 
 -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <header>
@@ -469,48 +471,89 @@ DM serif Display, DM Mono e Outfit
                     </div>
                 </a>
             </div>
-            <!--Possibilidade de colocar o formulario para envio de mensagem aqui em seguida-->
+
+            <!--Formulario para envio de mensagem-->
+            
             <div class="form-section">
                 <h3>Envie uma mensagem</h3>
+                <!--Form
+                <form method="post" id="form-cont">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="f-nome"> — Etiqueta de um campo de formulário. 
+                                O atributo for deve ter o mesmo valor que o id do input correspondente. Isso conecta os dois: clicar no label já coloca o cursor no input.
+                            <label for="f-nome">Nome:</label>
+                            <input type="text" name="name" id="f-nome" placeholder="Seu nome completo" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="f-email">E-mail:</label>
+                            <input type="email" name="email" id="f-email" placeholder="seu@email.com" required/>
+                        </div>
+                    </div>
 
-                <div class="form-row">
                     <div class="form-group">
-                        <!--<label for="f-nome"> — Etiqueta de um campo de formulário. 
-                            O atributo for deve ter o mesmo valor que o id do input correspondente. Isso conecta os dois: clicar no label já coloca o cursor no input.-->
-                        <label for="f-nome">Nome:</label>
-                        <input type="text" id="f-nome" placeholder="Seu nome completo">
+                        <label for="f-assunto">Assunto:</label>
+                        <select id="f-assunto" name="subject">
+                            <option value="">Selecione o tipo de contato</option>
+                            <option>Proposta CLT</option>
+                            <option>Proposta de Estágio</option>
+                            <option>Proposta de Freelance</option>
+                            <option>Outras</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="f-email">E-mail:</label>
-                        <input type="email" id="f-email" placeholder="seu@email.com">
+                        <label for="f-msg">Mensagem:</label>
+                        <textarea name="message" id="f-msg" placeholder="Escreva uma mensagem..." required></textarea>
+                        <textarea> — Campo de texto de múltiplas linhas. 
+                            placeholder — Texto cinza que aparece dentro do campo quando está vazio, para dar dica ao usuário.
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="f-assunto">Assunto:</label>
-                    <select id="f-assunto">
-                        <option value="">Selecione o tipo de contato</option>
-                        <option>Proposta CLT</option>
-                        <option>Proposta de Estágio</option>
-                        <option>Proposta de Freelance</option>
-                        <option>Outras</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="f-msg">Mensagem:</label>
-                    <textarea name="msg" id="f-msg" placeholder="Escreva uma mensagem..."></textarea>
-                    <!--<textarea> — Campo de texto de múltiplas linhas. 
-                        placeholder — Texto cinza que aparece dentro do campo quando está vazio, para dar dica ao usuário. -->
-                </div>
+                    <div class="form-submit-row">
+                        <button type="submit" class="btn btn-accent" onclick="enviarform()">
+                            Enviar mensagem
+                        </button>
+                    </div>
+                </form>-->
+                <form method="post" id="form-cont">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <!--<label for="f-nome"> — Etiqueta de um campo de formulário. 
+                                O atributo for deve ter o mesmo valor que o id do input correspondente. Isso conecta os dois: clicar no label já coloca o cursor no input.-->
+                            <label for="f-nome">Nome:</label>
+                            <input type="text" name="name" id="f-nome" placeholder="Seu nome completo"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="f-email">E-mail:</label>
+                            <input type="email" name="email" id="f-email" placeholder="seu@email.com"/>
+                        </div>
+                    </div>
 
-                <div class="form-submit-row">
-                    <button class="btn btn-accent" onclick="enviarform()">
-                        Enviar mensagem
-                    </button>
-                </div>
-                <div class="toast-msg" id="toast-form">
-                    ✅ Mensagem enviada com sucesso!
-                </div>
+                    <div class="form-group">
+                        <label for="f-assunto">Assunto:</label>
+                        <select id="f-assunto">
+                            <option value="">Selecione o tipo de contato</option>
+                            <option>Proposta CLT</option>
+                            <option>Proposta de Estágio</option>
+                            <option>Proposta de Freelance</option>
+                            <option>Outras</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="f-msg">Mensagem:</label>
+                        <textarea name="message" id="f-msg" placeholder="Escreva uma mensagem..."></textarea>
+                        <!--<textarea> — Campo de texto de múltiplas linhas. 
+                            placeholder — Texto cinza que aparece dentro do campo quando está vazio, para dar dica ao usuário. -->
+                    </div>
+
+                    <div class="form-submit-row">
+                        <button type="submit" class="btn btn-accent" onclick="enviarform()">
+                            Enviar mensagem
+                        </button>
+                    </div>
+                    <div class="toast-msg" id="toast-form">
+                        ✅ Mensagem enviada com sucesso!
+                    </div>
+                </form>
             </div>
         </div>
     </section>
