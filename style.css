@@ -1,911 +1,109 @@
-/* Remoção das margens e paddings padrão que cada navegador
-   define de forma diferente.*/
+//Variaveis
+const sections = document.querySelectorAll(`section[id]`)
+//Nessa aqui eu vou pegar todos as Sections que tem e selecionar o atributo de ID.Basicamente um seletor dos meus IDs
 
-
-*, *::before, *::after {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-}
-
-/*O "*" É como um seletor universal que aplica o estilo em todos os elemetos da página.
-O box-sizing: border-box muda como o CSS calcula o tamanho dos elementos. Em resumo ele tirar a formatação padrão que o site tem.
-fontes:
-https://pt.stackoverflow.com/questions/463/como-resetar-a-formata%C3%A7%C3%A3o-do-css
-https://www.devmedia.com.br/como-utilizar-a-tecnica-css-reset/26797*/
-
-/*VARIAVEIS*/
-
-/* :root representa o elemento raiz da página (o <html>).
-   Variáveis declaradas aqui ficam disponíveis em
-   qualquer lugar do CSS. */
-
-:root{
-    --bg: #0e0f11;
-    --surface: #16181c;
-    --surface2: #1e2128;
-    --border: rgba(255, 255, 255, 0.07);
-    --border2: rgba(255, 255, 255, 0.13);
-    --accent: #c8f05a;
-    --accent2: #5afaaf;
-    --accent3: #fa9c5a;
-    --text: #f0ede8;
-    --muted: #7a7d85;
-    --muted2: #545760;
-
-    /* Fontes */
-    --serif: 'DM Serif Display', serif;
-    --mono: 'DM Mono', monospace;
-    --sans: 'Outfit', sans-serif;
-}
-
-/*Nessa parte eu basicamente to dizendo que quando eu for colocar o backgroud-color eu posso
-simplismente ao inves de ir atrás dessa cor eu posso colocar a variavel assim:
-background-color: var(--bg)
-fontes:
-https://developer.mozilla.org/pt-BR/docs/Web/CSS/Reference/Selectors/:root
-https://cursos.alura.com.br/forum/topico-funcionalidade-root-294583;
-
-assim ele vai acatar o que eu tiver colocado dentro da minha variavel
-(IMPORTANTE: SE ALTERAR ALGO DENTRO DO ROOT, VAI ALTERAR EM TODO LUGAR QUE A VARIAVEL ESTIVER)*/
-
-html{
-    scroll-behavior: smooth;
-    /*Faz o scroll para âncoras (#sobre, #projetos, #contato, #experiencia, #skills e #formacao)*/
-}
-
-body{
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.65;
-    overflow-x: hidden;
-    /*overflow-x: hidden = esconde o scroll horizontal
-     para evitar que elementos desalinhados criem
-     uma barra de scroll feia na parte inferior */
-}
-
-/*Centralização*/
-.wrapper{
-    max-width: 900px;
-    /*Lagura limite de 900px*/
-    margin: 0  auto;
-    padding: 0 2rem;
-    /* espaço interno lateral para não colar nas bordas */
-    position: relative;
-    z-index: 1;
-    /*position: relative permite usar z-index, que controla qual elemento fica "em cima" de qual (como camadas). Valores maiores ficam na frente.*/
-}
-
-header{
-    padding: 3.5rem 0 0;
-    /* padding: topo direita-esquerda baixo
-     3.5rem em cima, 0 nos lados, 0 embaixo */
-    border-bottom: 1px solid var(--border);
-    /*Primeira borda */
-}
-
-.header-top{
-    /*Quando tem o display: flex em um elemento, ele se torna um "container flex" e seus filhos diretos se tornam "itens flex".*/
-    display: flex;
-    /* Flexbox: coloca os filhos lado a lado */
-    justify-content: space-between;
-    /* Empurra o primeiro filho para a esquerda
-     e o último para a direita */
-    align-items: flex-start;
-    /* Alinha os filhos pelo topo (não pelo centro) */
-    gap: 2rem;
-    /*Espaço entre os itens flex */
-    flex-wrap: wrap;
-    /* Se não couber na linha, quebra para a linha de baixo
-     (importante para responsividade mobile) */
-    margin-bottom: 2.5rem;
-
-}
-
-.header-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-end;
-    padding-top: 0.5rem;
-}
-
-.header-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    padding-bottom: 2rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.meta-item svg {
-    width: 13px;
-    height: 13px;
-    opacity: 0.5;
-}
-
-/*QUANDO HABILITAR O OPEN TO WORK
-/* O pílula de status (ponto verde piscando) */
-.status-pill{
-    display: inline-flex;
-    /* inline-flex = flex mas fica em linha com o texto */
-    align-items: center;
-    gap: 7px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    border: 1px solid rgba(90, 250, 175, 0.25);
-    padding: 5px 12px;
-    border-radius: 99px;
-    /* border-radius muito alto = forma de pílula/cápsula */
-    margin-bottom: 1.25rem;
-}
-
-.status-dot{
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    /* 50% = círculo perfeito */
-    background: var(--accent2);
-    animation: pulse 2s infinite;
-    /* animation: nome-da-animação duração repetição */
-}
-
-
-/* Nome e cargo */
-.hero-name {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 7vw, 4.5rem);
-    /* clamp(mínimo, ideal, máximo)
-    = mínimo 2.8rem, ideal 7% da largura da tela,
-    máximo 4.5rem. Responsivo automático! */
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    /* Aproxima as letras levemente — visual elegante */
-    margin-bottom: 0.5rem;
-}
-
-.hero-role {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-}
-
-.hero-bio {
-    font-size: 15px;
-    color: var(--muted);
-    max-width: 460px;
-    line-height: 1.75;
-}
-
-.hero-name em{
-    /* Seleciona o <em> que está DENTRO de .hero-name */
-    font-style: italic;
-    color: var(--accent);
-}
-
-/* Estilo base que todos os botões compartilham */
-
-.btn{
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 18px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    /* cursor: pointer = cursor vira a "mão" ao passar por cima */
-    text-decoration: none;
-    /* Remove o sublinhado padrão de links <a> */
-    transition: all 0.18s;
-    /* transition: o-que-transicionar duração
-     "all" = anima qualquer propriedade que mude
-     0.18s = duração da animação */
-     border: none;
-}
-
-.btn-accent{
-    background: var(--accent);
-    color: #0e0f11;
-}
-
-.btn-accent:houver{
-    /* :hover = aplica este estilo quando o mouse
-     está em cima do elemento */
-     background: #d8ff6a;
-     transform: translate(-1px);
-    /* Move 1px para cima — efeito de "levantar" */
-}
-
-.btn-ghost{
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border2);
-}
-
-.btn-ghost:houver{
-    background: var(--surface2);
-}
-
-/*A NAV de abas(tabs)*/
-
-nav.tabs {
-  position: sticky;
-  /* sticky = o elemento "gruda" na tela quando
-     o usuário rola até ele. Fica fixo no topo
-     enquanto você está naquele trecho da página. */
-  top: 0;
-  z-index: 100;
-  /* fica na frente de tudo com z-index alto */
-  background: rgba(14, 15, 17, 0.92);
-  /* cor de fundo com 92% de opacidade (8% transparente) */
-  backdrop-filter: blur(12px);
-  /* Efeito de vidro fosco — borra o que está atrás */
-  border-bottom: 1px solid var(--border);
-}
-
-.tabs-inner {
-  display: flex;
-  gap: 0;
-  overflow-x: auto;
-  /* Se as abas não couberem, permite scroll horizontal */
-  scrollbar-width: none;
-  /* Esconde a barra de scroll no Firefox */
-}
-
-.tabs-inner::-webkit-scrollbar {
-  display: none;
-  /* Esconde a barra de scroll no Chrome*/
-}
-
-.tab-link {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 15px 22px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--muted);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  /* Borda transparente já ocupa o espaço,
-     para não "pular" quando ficar colorida */
-  transition: all 0.18s;
-  white-space: nowrap;
-  /* Não quebra o texto em duas linhas */
-  cursor: pointer;
-}
-
-.tab-link:hover {
-  color: var(--text);
-}
-
-.tab-link.active {
-  /* Aplica quando o JavaScript adiciona a classe "active" */
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.tab-link svg {
-    width: 14px;
-    height: 14px;
-}
-
-/*Animação de entrada das seções
-
-
-section.visible {
-  /* Quando o JavaScript adicionar a classe "visible",
-     a seção vai para o estado final com animação 
-  opacity: 1;
-  transform: translateY(0);
-}
-
-*/
-
-/*Grid da seção Sobre*/
-
-.sobre-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* Duas colunas de tamanho igual*/
-  gap: 1.5rem;
-}
-
-section {
-  padding: 4rem 0;
-  border-bottom: 1px solid var(--border);
-
-  /* Estado inicial: invisível e deslocada*/ 
-  opacity: 50; /*Depois trocar para 0  para acompanahar a animação*/
-  transform: translateY(24px);
-  /*translateY(24px) = move 24 pixels para baixo*/ 
-
-  transition: opacity 0.55s ease, transform 0.55s ease;
-  /* Quando opacity ou transform mudarem,
-     a mudança será animada em 0.55 segundos */
-}
-
-.section-title {
-  font-family: var(--serif);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  line-height: 1.15;
-  margin-bottom: 2.5rem;
-}
-
-.section-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.6rem;
-}
-
-
-
-.sobre-main {
-  grid-column: 1 / -1;
-  /* Ocupa da coluna 1 até a última (-1)
-     = ocupa TODA a largura do grid */
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.75rem;
-}
-
-.sobre-main p {
-  color: var(--muted);
-  line-height: 1.8;
-  margin-bottom: 1rem;
-}
-
-.sobre-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
-.sobre-card h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-}
-
-.sobre-card p {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-/*Cards de Experiência*/
-
-.exp-list {
-  display: flex;
-  flex-direction: column;
-  /* flex-direction: column = empilha os itens
-     verticalmente*/
-  gap: 10px;
-}
-
-.exp-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem 1.75rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  /* auto = ocupa só o espaço necessário (o logo)
-     1fr = ocupa o resto*/
-  gap: 1.25rem;
-  align-items: start;
-  transition: border-color 0.2s;
-}
-
-.exp-item:hover {
-  border-color: var(--border2);
-  /* A borda fica um pouco mais visível ao passar o mouse */
-}
-
-.exp-logo {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--accent);
-}
-
-.exp-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  /* baseline = alinha pelo fundo do texto,
-     fica mais elegante quando os textos têm
-     tamanhos diferentes */
-  gap: 1rem;
-  margin-bottom: 3px;
-  flex-wrap: wrap;
-}
-
-.exp-title { font-size: 15px; font-weight: 600; }
-
-.exp-period {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-}
-
-.exp-company {
-  font-size: 13px;
-  color: var(--accent2);
-  font-weight: 500;
-  margin-bottom: 0.6rem;
-}
-
-.exp-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.exp-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 0.85rem;
-}
-
-.tag {
-  font-family: var(--mono);
-  font-size: 11px;
-  padding: 3px 9px;
-  border-radius: 4px;
-  background: var(--surface2);
-  color: var(--muted);
-  border: 1px solid var(--border2);
-}
-
-/*Grid de projetos*/
-
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  /* auto-fill = cria quantas colunas couberem
-     minmax(260px, 1fr) = mínimo 260px, máximo 1 fração*/
-  gap: 14px;
-}
-
-.proj-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: border-color 0.2s, transform 0.2s;
-  position: relative;
-  /* position: relative para o ::before funcionar */
-  overflow: hidden;
-  /* Esconde o que sair das bordas arredondadas */
-}
-
-/* Linha decorativa que aparece no topo ao hover */
-.proj-card::before {
-  content: '';
-  /* ::before cria um elemento visual antes do conteúdo.
-     Precisa de content para existir (pode ser vazio '').
-     É puramente decorativo, não existe no HTML. */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  /* Começa com escala horizontal 0 = invisível */
-  transition: transform 0.25s;
-  transform-origin: left;
-  /* A expansão começa da esquerda */
-}
-
-.proj-card:hover {
-  border-color: var(--border2);
-  transform: translateY(-3px);
-  /* "Levanta" o card ao passar o mouse */
-}
-
-.proj-card:hover::before {
-  transform: scaleX(1);
-  /* Expande para escala 1 = largura total */
-}
-
-.proj-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 9px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    font-size: 18px;
-}
-
-.proj-title {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-}
-
-.proj-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 1rem;
-}
-
-/*Barras de skill*/
-
-.skills-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.skill-group h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted2);
-  margin-bottom: 1.1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-
-.skill-name-col {
-  width: 100px;
-  font-size: 13px;
-  color: var(--muted);
-  flex-shrink: 0;
-  /* flex-shrink: 0 = não encolhe mesmo se não houver espaço */
-}
-
-.skill-bar-wrap {
-  flex: 1;
-  /* flex: 1 = ocupa todo o espaço restante */
-  height: 5px;
-  background: var(--surface2);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.skill-fill {
-  height: 100%;
-  border-radius: 99px;
-  width: 0%;
-  /* Começa em 0% — o JavaScript vai mudar isso */
-  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-  /* cubic-bezier = curva de aceleração personalizada
-     Esta específica: começa rápido, desacelera no fim
-     (efeito "mola") */
-}
-
-.skill-pct-col {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted2);
-  width: 30px;
-  text-align: right;
-}
-
-/*Educação, Contato e Formulário*/
-
-/* EDUCAÇÃO */
-.edu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.edu-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.4rem 1.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  transition: border-color 0.2s;
-}
-
-.edu-item:hover { border-color: var(--border2); }
-
-.edu-degree { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
-.edu-school { font-size: 13px; color: var(--accent2); font-weight: 500; margin-bottom: 3px; }
-.edu-detail { font-size: 12px; color: var(--muted); font-family: var(--mono); }
-
-.edu-badge {
-  font-family: var(--mono);
-  font-size: 11px;
-  padding: 5px 12px;
-  border-radius: 99px;
-}
-
-.edu-badge-cursando {
-  background: rgba(200, 240, 90, 0.1);
-  color: var(--accent);
-  border: 1px solid rgba(200, 245, 75, 0.25);
-}
-
-.edu-badge-concluida {
-  background: rgba(90, 250, 175, 0.1);
-  color: var(--accent2);
-  border: 1px solid rgba(90, 250, 125, 0.25);
-}
-
-.edu-badge-certificado {
-  background: rgba(90, 186, 250, 0.1);
-  color: var(--accent2);
-  border: 1px solid rgba(90, 178, 250, 0.25);
-}
-
-/* CONTATO */
-.contato-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.contato-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  cursor: pointer;
-  text-decoration: none;
-  transition: border-color 0.2s, transform 0.18s;
-}
-
-.contato-card:hover {
-  border-color: var(--border2);
-  transform: translateY(-2px);
-}
-
-.contato-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.contato-icon svg {
-    width: 18px;
-    height: 18px;
-}
-
-.contato-label { 
-    font-size: 11px; 
-    color: var(--muted); 
-    font-family: var(--mono); 
-    text-transform: uppercase; 
-    letter-spacing: 0.08em; 
-    margin-bottom: 3px; 
-}
-
-.contato-value { 
-    font-size: 14px; 
-    font-weight: 500;
-    color: var(--text); 
-}
-
-/* FORMULÁRIO */
-.form-section {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 2rem;
-  margin-top: 2rem;
-}
-
-.form-section h3 {
-  font-family: var(--serif);
-  font-size: 1.4rem;
-  margin-bottom: 1.5rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
-.form-group input, .form-group textarea, .form-group select {
-    background: var(--surface2);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 11px 14px;
-    font-size: 14px;
-    color: var(--text);
-    font-family: var(--sans);
-    outline: none;
-    transition: border-color 0.18s;
-}
-
-.form-group label {
-  font-size: 12px;
-  color: var(--muted);
-  font-family: var(--mono);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-
-/* Estiliza todos os campos de entrada de uma vez */
-.form-group input,
-.form-group textarea,
-.form-group select {
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 8px;
-  padding: 11px 14px;
-  font-size: 14px;
-  color: var(--text);
-  font-family: var(--sans);
-  outline: none;
-  /* Remove o contorno padrão do navegador ao focar */
-  transition: border-color 0.18s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  /* :focus aplica quando o campo está ativo (cursor dentro) */
-  border-color: var(--accent);
-}
-
-.form-group textarea {
-  resize: vertical;
-  /* O usuário pode redimensionar só verticalmente */
-  min-height: 110px;
-}
-
-.form-submit-row {
-  display: flex;
-  justify-content: flex-end;
-  /* Empurra o botão para o lado direito */
-  margin-top: 1rem;
-}
-
-.toast-msg {
-  display: none;
-  /* Começa escondido — o JS vai mostrar */
-  margin-top: 1rem;
-  padding: 12px 16px;
-  background: rgba(200, 240, 90, 0.1);
-  border: 1px solid rgba(200, 240, 90, 0.3);
-  border-radius: 8px;
-  font-size: 13px;
-  color: var(--accent);
-  font-family: var(--mono);
-}
-
-/*Footer, botão de topo e responsividade*/
-
-/* FOOTER */
-
-footer {
-  padding: 2.5rem 0;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-footer p {
-  font-size: 12px;
-  color: var(--muted2);
-  font-family: var(--mono);
-}
-
-element.style {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-
-/* BOTÃO VOLTAR AO TOPO */
-#scrolltop {
-  position: fixed;
-  /* fixed = fica fixo na tela, mesmo ao rolar */
-  bottom: 2rem;
-  right: 2rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-
-  /* Começa invisível */
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.2s, transform 0.2s;
-  z-index: 99;
-}
-
-#scrolltop.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#scrolltop:hover { background: var(--surface2); }
-
-/* RESPONSIVIDADE — Mobile */
-@media (max-width: 600px) {
-  .sobre-grid,
-  .skills-section,
-  .contato-grid { grid-template-columns: 1fr; }
-
-  .form-row { grid-template-columns: 1fr; }
-
-  .exp-top { flex-direction: column; gap: 2px; }
+const tablinks = document.querySelectorAll(`.tab-link`)
+
+
+//Funções
+
+//Atz a aba que está ativa 
+// Uma função é um bloco de código reutilizável com nome.
+// Definimos com "function nome() { ... }" e
+// chamamos com "nome()"
+
+window.addEventListener('scroll', updateTab);
+
+function updateTab(){
+    let secao = '';
+
+    //O forEach percorre cada item da lista do sections e para cada item a função 'sec' vai ser chamada.
+    sections.forEach(sec =>{
+
+        //O getBoundingClientRect() retorna informações sobre a posição do elemento na tela neste exato momento.
+        //E o ".top" é a distância do topo do elemento ao topo da janela.
+        const distanciaTopo = sec.getBoundingClientRect().top;
+
+        //Aqui estou colocando a condição de se a distância for menor ou igual a 100px, vai significar que a seção já "subiu" e está visível.
+        if(distanciaTopo <= 150 && distanciaTopo >= -300){
+
+            //getAttribute('id') pega o valor do atributo id
+            secao = sec.getAttribute('id'); 
+        }
+    });
+
+    //Aitvando a aba
+    tablinks.forEach(link =>{
+
+        // link.getAttribute('href') retorna ex: "#sobre" do meu HTML e vai atribuir a cor quando eu clicar para trocar a seção
+        // '#' + current monta a mesma string: "#sobre" do HTML e se forem iguais, esta aba deve ficar ativa.
+        const ativada = link.getAttribute(`href`) === '#' + secao;
+
+        // Essa classe classList.toggle vai me ajudar a devinir quando a seção vai ficar ativa de acordo com a condição (classe, condição)
+        // Se condição for True: adiciona a classe e se condição for false: remove a classe
+        link.classList.toggle('active', ativada);
+    });
+}
+
+
+function enviarform(){
+  
+  //Fica licado pae muito bom isso aqui, o .trim() no final vai remover os espaços em branco nas pontas
+  const nome = document.getElementById('f-nome').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const msg = document.getElementById('f-msg').value.trim();
+
+  // Validação: verifica se os campos obrigatórios foram preenchidos.
+  // O operador ! vai ajudar a indetificar se as infos foram prenchidas (vazio = inválido).
+  if (!nome || !email || !msg) {
+    alert('Por favor, preencha nome, e-mail e mensagem.');
+    return;
+  }
+
+  //Config do EmailJS para envio do e-mail para minha caixa
+  
+  emailjs.init({
+            publicKey: "_vvRF-RVIcJiuaJxA",
+  });
+
+  document.getElementById("form-cont").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const formData = {
+      name: document.getElementById("f-nome").value,
+      email: document.getElementById("f-email").value,
+      subject: document.getElementById("f-assunto").value,
+      message: document.getElementById("f-msg").value
+    }
+      
+    let serviceID = "service_yh4ipvt"
+    let templateID = "template_1vordye"
+
+    emailjs.send(serviceID, templateID, formData);
+
+    console.table(formData)
+  })
+
+  const notifica = document.getElementById('toast-form');
+
+  //torna visível quando enviar o e-mail
+  notifica.style.display = 'block';
+
+  // Limpa os campos após enviar
+  //document.getElementById('f-nome').value = '';
+  //document.getElementById('f-email').value = '';
+  //document.getElementById('f-assunto').value = '';
+  //document.getElementById('f-msg').value = '';
+
+  // setTimeout executa uma função após um atraso.
+  // Parâmetros: (função, milissegundos)
+  // 5000ms = 5 segundos
+  setTimeout(() => {
+    notifica.style.display = 'none'; // esconde o notifica
+    // Limpa os campos após enviar
+    document.getElementById('f-nome').value = '';
+    document.getElementById('f-email').value = '';
+    document.getElementById('f-assunto').value = '';
+    document.getElementById('f-msg').value = '';
+  }, 5000);
 }
