@@ -47,7 +47,8 @@ function updateTab(){
 
 
 function enviarform(){
-  
+  event.preventDefault();
+    
   //Fica licado pae muito bom isso aqui, o .trim() no final vai remover os espaços em branco nas pontas
   const nome = document.getElementById('f-nome').value.trim();
   const email = document.getElementById('f-email').value.trim();
@@ -67,7 +68,7 @@ function enviarform(){
   });
 
   document.getElementById("form-cont").addEventListener("submit", function(event){
-    event.preventDefault();
+    
 
     const formData = {
       name: document.getElementById("f-nome").value,
